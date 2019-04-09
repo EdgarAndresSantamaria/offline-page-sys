@@ -35,7 +35,6 @@ this.addEventListener('fetch', event => {
           fetch( new Request(createCacheBustedRequest(event.request.url),{credentials: 'same-origin', redirect: 'follow'}))
           .catch(error => {
             console.log('Fetch failed; returning offline page instead.', error);
-            console.log(caches.match(offlineUrl))
             return caches.match(offlineUrl);
           })
     );
@@ -45,6 +44,8 @@ this.addEventListener('fetch', event => {
         event.respondWith(caches.match(event.request)
                         .then(function (response) {
                         return response || fetch(event.request);
+                    }).catch(error => {
+                      console.log('Fetch of resource failed;', error);
                     })
             );
       }
