@@ -22,6 +22,7 @@ this.addEventListener('install', event => {
       cache.add(new Request(offlineUrl, {credentials: 'same-origin', redirect: 'follow'}));
       cache.add(new Request('damas/img/offline.svg', {credentials: 'same-origin', redirect: 'follow'}));
       cache.add(new Request('damas/javascript/juego.js', {credentials: 'same-origin', redirect: 'follow'}));
+      cache.add(new Request('favicon.ico', {credentials: 'same-origin', redirect: 'follow'}));
       return cache;
     })
   );
